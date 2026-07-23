@@ -233,6 +233,26 @@ table tbody td:first-child{font-weight:700;color:var(--navy);text-align:left}
 .fm-name::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:60%;height:2px;background:linear-gradient(90deg,transparent,#38bdf8,transparent);}
 .fm-tagline{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:rgba(100,116,139,0.8);margin-top:10px;}
 .fm-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--lk-accent3);margin:0 6px;vertical-align:middle;box-shadow:0 0 8px rgba(20,184,166,0.6);}
+
+/* ============ FULLMARK ANIMATED LOGO (A+ Seal) ============ */
+.fm-badge-wrap{display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+.fm-badge-svg{overflow:visible;display:block;}
+.fm-ring{transform-origin:60px 60px;stroke-dasharray:339;stroke-dashoffset:339;opacity:0;animation:fmRingDraw 1.6s cubic-bezier(.22,.61,.36,1) .1s forwards,fmRingFade .01s linear .1s forwards;}
+.fm-badge-bg{transform-origin:60px 60px;opacity:0;transform:scale(.82);animation:fmBadgePop 1.15s cubic-bezier(.16,1,.3,1) .55s forwards;}
+.fm-badge-text{opacity:0;transform-origin:60px 60px;animation:fmTextFade 1s cubic-bezier(.16,1,.3,1) 1.05s forwards;}
+.fm-shine{opacity:0;animation:fmShineSweep 1.3s ease 1.85s forwards;}
+.fm-badge-wrap svg{animation:fmGlow 4.6s ease-in-out 3.2s infinite;}
+@keyframes fmRingFade{to{opacity:1;}}
+@keyframes fmRingDraw{from{stroke-dashoffset:339;}to{stroke-dashoffset:0;}}
+@keyframes fmBadgePop{0%{opacity:0;transform:scale(.82);}100%{opacity:1;transform:scale(1);}}
+@keyframes fmTextFade{0%{opacity:0;transform:translateY(5px) scale(.95);}100%{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes fmShineSweep{0%{opacity:0;transform:translateX(-70px) rotate(18deg);}18%{opacity:.55;}55%{opacity:.3;}100%{opacity:0;transform:translateX(70px) rotate(18deg);}}
+@keyframes fmGlow{0%,100%{filter:drop-shadow(0 6px 16px rgba(45,212,191,.28));}50%{filter:drop-shadow(0 8px 26px rgba(240,208,128,.42));}}
+.fm-name{background:linear-gradient(100deg,#2dd4bf 0%,#f0d080 25%,#2dd4bf 50%,#5eead4 75%,#2dd4bf 100%);background-size:250% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:fmTextShimmer 7s linear 2.4s infinite;}
+@keyframes fmTextShimmer{0%{background-position:250% center;}100%{background-position:-250% center;}}
+.app-brand-badge{width:32px;height:32px;flex-shrink:0;}
+.app-brand-badge svg{width:100%;height:100%;overflow:visible;display:block;animation:fmGlow 4.6s ease-in-out 1.6s infinite;}
+.app-brand-logo{background:linear-gradient(100deg,#fff 0%,#5eead4 30%,#fff 55%,#f0d080 75%,#fff 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:fmTextShimmer 7s linear 1.6s infinite;}
 .uni-strip{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid var(--lk-border);border-radius:12px;padding:10px 14px;margin-bottom:22px;}
 .uni-strip-badge{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#0e2a5e,#153a7a);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#fff;font-family:'Syne',sans-serif;flex-shrink:0;}
 .uni-strip-text{text-align:right;direction:rtl;line-height:1.35;}
@@ -344,7 +364,31 @@ table tbody td:first-child{font-weight:700;color:var(--navy);text-align:left}
   <div class="brand-card">
     <div class="fm-logo-wrap">
       <div class="fm-logo">
-        <div class="fm-gpa" style="color:rgba(45,212,191,0.6);">FULLMARK</div>
+        <div class="fm-badge-wrap">
+          <svg class="fm-badge-svg" viewBox="0 0 120 120" width="92" height="92">
+            <defs>
+              <linearGradient id="fmBadgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#153a7a"/>
+                <stop offset="55%" stop-color="#0e2a5e"/>
+                <stop offset="100%" stop-color="#07090f"/>
+              </linearGradient>
+              <linearGradient id="fmRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0d080"/>
+                <stop offset="50%" stop-color="#2dd4bf"/>
+                <stop offset="100%" stop-color="#c9a84c"/>
+              </linearGradient>
+              <linearGradient id="fmTextGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#f0d080"/>
+                <stop offset="100%" stop-color="#c9a84c"/>
+              </linearGradient>
+              <clipPath id="fmClip"><circle cx="60" cy="60" r="46"/></clipPath>
+            </defs>
+            <circle class="fm-ring" cx="60" cy="60" r="54" fill="none" stroke="url(#fmRingGrad)" stroke-width="2.5"/>
+            <circle class="fm-badge-bg" cx="60" cy="60" r="46" fill="url(#fmBadgeGrad)"/>
+            <text class="fm-badge-text" x="60" y="76" font-family="Syne, sans-serif" font-weight="800" font-size="40" fill="url(#fmTextGrad)" text-anchor="middle">A+</text>
+            <rect class="fm-shine" x="-10" y="0" width="26" height="120" fill="rgba(255,255,255,0.55)" clip-path="url(#fmClip)"/>
+          </svg>
+        </div>
         <div class="fm-name">FullMark</div>
         <div class="fm-tagline"><span class="fm-dot" style="background:#14b8a6;"></span>منصة التفوق الأكاديمي<span class="fm-dot" style="background:#14b8a6;"></span></div>
       </div>
@@ -356,7 +400,7 @@ table tbody td:first-child{font-weight:700;color:var(--navy);text-align:left}
     </div>
 
     <div style="text-align:center;">
-      <div class="free-badge">🎁 مجانية بالكامل 100%</div>
+      <div class="free-badge">🎁 مجانية بالكامل</div>
     </div>
 
     <div class="lock-badge" style="color:var(--lk-accent);border-color:rgba(45,212,191,0.3);background:rgba(45,212,191,0.08);">New Mansoura University · Faculty of Dentistry</div>
@@ -374,6 +418,29 @@ table tbody td:first-child{font-weight:700;color:var(--navy);text-align:left}
 
 <div class="app-header">
   <div class="app-brand">
+    <div class="app-brand-badge">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="fmBadgeGradSm" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#153a7a"/>
+            <stop offset="55%" stop-color="#0e2a5e"/>
+            <stop offset="100%" stop-color="#07090f"/>
+          </linearGradient>
+          <linearGradient id="fmRingGradSm" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f0d080"/>
+            <stop offset="50%" stop-color="#2dd4bf"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+          <linearGradient id="fmTextGradSm" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f0d080"/>
+            <stop offset="100%" stop-color="#c9a84c"/>
+          </linearGradient>
+        </defs>
+        <circle cx="60" cy="60" r="54" fill="none" stroke="url(#fmRingGradSm)" stroke-width="3"/>
+        <circle cx="60" cy="60" r="46" fill="url(#fmBadgeGradSm)"/>
+        <text x="60" y="76" font-family="Syne, sans-serif" font-weight="800" font-size="40" fill="url(#fmTextGradSm)" text-anchor="middle">A+</text>
+      </svg>
+    </div>
     <div>
       <div class="app-brand-logo">FullMark</div>
       <div class="app-brand-sub">Dental Biomaterials II · NMU</div>
